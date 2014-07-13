@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+
+  <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="#fff" >
+
+      <!-- Header  Starts -->
+
+      <LinearLayout
+          android:id="@+id/linearLayout1"
+          android:layout_width="fill_parent"
+          android:layout_height="40dip"
+          android:layout_alignParentTop="true"
+          android:background="@layout/footer_repeat"
+          android:orientation="horizontal" >
+      </LinearLayout>
+      <!-- Header Ends -->
+      <!-- Footer Start -->
+
+      <LinearLayout
+          android:id="@+id/linearLayout2"
+          android:layout_width="fill_parent"
+          android:layout_height="90dip"
+          android:layout_alignParentBottom="true"
+          android:background="@layout/footer_repeat" >
+
+          <ProgressBar
+              android:id="@+id/loadingProgressBar"
+              android:layout_width="match_parent"
+              android:layout_height="28dp" />
+      </LinearLayout>
+      <!-- Footer Ends -->
+
+
+      <!-- Registration Form -->
+
+      <LinearLayout
+          android:id="@+id/linearLayout3"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/linearLayout2"
+          android:layout_below="@+id/linearLayout1"
+          android:orientation="vertical"
+          android:padding="10dip" >
+
+          <!-- Full Name Label -->
+
+          <TextView
+              android:id="@+id/link_to_login"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="left"
+              android:layout_marginTop="20dip"
+              android:layout_weight="0.31"
+              android:gravity="left"
+              android:text="Shuttle Company : Shuttle Direct"
+              android:textAlignment="textStart"
+              android:textColor="#025f7c"
+              android:textSize="25sp"
+              android:textStyle="bold" />
+
+          <!-- Email Label -->
+          <!-- Password Label -->
+
+          <Space
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="0.15" />
+
+          <Space
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="0.15" />
+
+              <TextView
+                  android:id="@+id/link_to_login"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dip"
+                  android:layout_weight="0.15"
+                  android:gravity="left"
+                  android:text="Driver : Nathaneel"
+                  android:textAlignment="textStart"
+                  android:textColor="#025f7c"
+                  android:textSize="25sp"
+                  android:textStyle="bold" />
+
+              <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.15" />
+
+              <TextView
+                  android:id="@+id/link_to_login"
+                  android:layout_width="191dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dip"
+                  android:gravity="left"
+                  android:text="Fee : R250"
+                  android:textAlignment="textStart"
+                  android:textColor="#025f7c"
+                  android:textSize="25sp"
+                  android:textStyle="bold" />
+
+     <TextView
+         android:id="@+id/link_to_login"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/linearLayout3"
+         android:layout_marginTop="19dp"
+         android:layout_weight="0.15"
+         android:gravity="left"
+         android:text="From : 45 Juta Street Braamfontein"
+         android:textColor="#025f7c"
+         android:textSize="25sp"
+         android:textStyle="bold" />
+     
+     <TextView
+         android:id="@+id/link_to_login"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/linearLayout3"
+         android:layout_marginTop="19dp"
+         android:layout_weight="0.15"
+         android:gravity="left"
+         android:text="To : Sandton City"
+         android:textColor="#025f7c"
+         android:textSize="25sp"
+         android:textStyle="bold" />
+     
+     <TextView
+         android:id="@+id/link_to_login"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/linearLayout3"
+         android:layout_marginTop="19dp"
+         android:layout_weight="0.15"
+         android:gravity="left"
+         android:text="Time : 11:15"
+         android:textColor="#025f7c"
+         android:textSize="25sp"
+         android:textStyle="bold" />
+
+          <!-- Link to Login Screen -->
+
+     <Button
+         android:id="@+id/btnPay"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.31"
+         android:layout_marginTop="25dp" 
+         android:text="Pay" />
+
+      </LinearLayout>
+
+      <!-- Registration Form Ends -->
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/btnNext"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="15dp" />
+
+ 
+  </RelativeLayout>
+
+</ScrollView>
