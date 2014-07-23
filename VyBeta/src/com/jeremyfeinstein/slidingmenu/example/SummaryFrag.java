@@ -14,7 +14,7 @@ public class SummaryFrag extends Fragment {
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		
-				View view = inflater.inflate(R.layout.summary, container, false);
+				 View view = inflater.inflate(R.layout.summary, container, false);
 			    
 			     Button buttonRegister = (Button) view.findViewById(R.id.btnPay);
 			        

@@ -46,16 +46,16 @@ public class RegisterActivity extends Activity{
             public void onClick(View arg0) {
      
         		try {
-					
-    	    		        userpreferences.edit().putString("firstname_session", fname.getText().toString()).commit();
-    	    		        userpreferences.edit().putString("lasttname_session", lname.getText().toString()).commit();
-    	    		        userpreferences.edit().putString("email_session", txtemail.getText().toString()).commit();
-    	    		        userpreferences.edit().putString("password_session",SHA1(password.getText().toString())).commit();
-    	    		        userpreferences.edit().putString("phonenumber_session", phonenumber.getText().toString()).commit();
-    	        			
-    	        			Intent i = new Intent(getApplicationContext(), CreditCard.class);
-    	                    startActivity(i);
-    	                    finish();
+        			
+        			userpreferences.edit().putString("firstname_session", fname.getText().toString()).commit();
+    		        userpreferences.edit().putString("lasttname_session", lname.getText().toString()).commit();
+    		        userpreferences.edit().putString("email_session", txtemail.getText().toString()).commit();
+    		        userpreferences.edit().putString("password_session",SHA1(password.getText().toString())).commit();
+    		        userpreferences.edit().putString("phonenumber_session", phonenumber.getText().toString()).commit();
+        			
+	    			Intent i = new Intent(getApplicationContext(), CreditCard.class);
+	                startActivity(i);
+	                finish();
     	        			
             			
         		} catch (Exception e) {

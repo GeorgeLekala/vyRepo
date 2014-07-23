@@ -80,6 +80,7 @@ public class EmployeeActivity extends Activity {
 	    
 	    session_username = sharedpreferences.getAll().get("username").toString();
 	    
+	    
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         
        	

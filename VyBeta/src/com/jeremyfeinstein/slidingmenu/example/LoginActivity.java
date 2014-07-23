@@ -30,60 +30,42 @@ import com.microsoft.windowsazure.mobileservices.TableQueryCallback;
  
 public class LoginActivity extends Activity{
 	
-	TextView loginErr;
-	 /**
-	* Mobile Service Client reference
-	*/
+
 	private MobileServiceClient mClient;
-	/**
-	 * Mobile Service Table used to access data
-	 */
-	private MobileServiceTable<UserRegistration> mCommandTable;
-	public String userId = "";
+	private MobileServiceTable<UserRegistration> mCommandTable;	
 	public String userpass = "";
 	public String username = "";
-	public String usercommand = "";
-	public String userauth = "";
-	public String userlast = "";
 	public String refresh;
-	public List<UserRegistration> mComItem;
 	public UserRegistration mGetUserItem;
-	public UserRegistration mItem;
-	public String test = null;
-	private ProgressBar mProgressBar;
 	private ProgressDialog ringProgressDialog;
 	private EditText user_name;
 	private EditText password;
+    private TextView registerScreen;
+    private TextView loginErr;
 	public SharedPreferences sharedpreferences;
 
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         setContentView(R.layout.login);
-        
-        sharedpreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE);	
-        
-    	mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
-
-		// Initialize the progress bar
-		mProgressBar.setVisibility(ProgressBar.GONE);
-		
-		mGetUserItem = new UserRegistration(); 
-		mItem = new UserRegistration();
-		
 		// Create the Mobile Service Client instance, using the provided
 		// Mobile Service URL and key
+        registerScreen = (TextView) findViewById(R.id.link_to_register);
+        loginErr = (TextView) findViewById(R.id.loginError);
+        
 		try {
+	        
+	        sharedpreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE);	
+	        
+	        mGetUserItem = new UserRegistration(); 
+			
 			mClient = new MobileServiceClient(
 					"https://locationawarepm.azure-mobile.net/",
 					"FOySPsltTolaITxbZQmzvbOgHsnzSr93",
 					this).withFilter(new ProgressFilter());		
 			
-			mCommandTable = mClient.getTable(UserRegistration.class);
-			
-			
+			mCommandTable = mClient.getTable(UserRegistration.class);		
 			
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
@@ -91,9 +73,6 @@ public class LoginActivity extends Activity{
     		
 		}
  
-        TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
-        loginErr = (TextView) findViewById(R.id.loginError);
-        
         // Listening to register new account link
         registerScreen.setOnClickListener(new View.OnClickListener() {
  
@@ -117,23 +96,8 @@ public class LoginActivity extends Activity{
                	  try {
                		  
 	           		loginErr.setVisibility(View.GONE);
-	 	  
-               
-        			if(user_name.getText().toString().equals(getDBUsername(user_name.getText().toString()).getmUsername().toString()) && getDBUsername(user_name.getText().toString()).getmPassword().toString().equals(SHA1(password.getText().toString())))
-					{
-        				sharedpreferences.edit().putString("username", user_name.getText().toString()).commit();
-				
-						Intent i = new Intent(getApplicationContext(), MainActivity.class);
-				        startActivity(i);
-				        finish();
-					
-					}
-						 else
-					{
-						Toast.makeText(getApplicationContext(),"Incorrect details : Try Again :)", Toast.LENGTH_LONG).show();
-					      
-					}
-						
+	           		getDBUsername(user_name.getText().toString());
+	 	  		
                	  }catch (Exception e)
                	  {
                		  Toast.makeText(getApplicationContext(),"Please Try Again", Toast.LENGTH_LONG).show();
@@ -150,7 +114,7 @@ public class LoginActivity extends Activity{
 	}
 
 	
-	public UserRegistration getDBUsername(String uname) 
+	public void getDBUsername(String uname) 
 	{
 		try {
 			// Get the items that weren't marked as completed and add them in the
@@ -164,8 +128,29 @@ public class LoginActivity extends Activity{
 			
 						for (UserRegistration item : result) {
 
-							mItem.setmUsername(item.getmUsername().toString());
-							mItem.setmPassword(item.getmPassword().toString());
+							try {
+								if(user_name.getText().toString().equals(item.getmUsername().toString()) && item.getmPassword().toString().equals(SHA1(password.getText().toString())))
+								{
+									sharedpreferences.edit().putString("username", user_name.getText().toString()).commit();
+
+									Intent i = new Intent(getApplicationContext(), MainActivity.class);
+								    startActivity(i);
+								    finish();
+								
+								}
+									 else
+								{
+									Toast.makeText(getApplicationContext(),"Incorrect details : Try Again :)", Toast.LENGTH_LONG).show();
+								      
+								}
+							} catch (NoSuchAlgorithmException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						
 							
 						}
 						
@@ -181,9 +166,6 @@ public class LoginActivity extends Activity{
 			// TODO: handle exception
 			Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
 		}
-		
-		return mItem;
-		
 	}
 
 	  

@@ -24,6 +24,7 @@ public class RandomList extends ListFragment{
 		list_contents.add("Track Vehicle");
 		list_contents.add("Fare Quote");
 		list_contents.add("Reporting");
+		list_contents.add("Add Ride");
 		list_contents.add("Sign out");
 		
 		return inflater.inflate(R.layout.list, container, false);
@@ -60,6 +61,9 @@ public class RandomList extends ListFragment{
 			 newFragment = new ReportFragement();
 			 break;
 		case 6:
+			 newFragment = new addRides();
+			 break;
+		case 7:
 			  i = new Intent(getActivity(), LoginActivity.class);
 		      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	          startActivity(i);
