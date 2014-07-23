@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="35dip"
+          android:background="@layout/footer_repeat" >
+          
+           <ProgressBar
+               android:id="@+id/loadingProgressBar"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+      </LinearLayout>
+      
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btn_shutdown"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1.00"
+            android:text="Shutdown" />
+
+        <Button
+            android:id="@+id/btn_restart"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1.00"
+            android:text="Restart" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_wakeonlan"
+            android:text="Wake on Lan" 
+            android:onClick="wakeonlan"
+            />
+
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_sleep"
+            android:text="Sleep" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_hibernate"
+            android:text="Hibernate" />
+
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_abort"
+            android:text="Abort" />
+
+    </LinearLayout>
+</LinearLayout>

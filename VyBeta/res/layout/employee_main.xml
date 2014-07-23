@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- Included header.xml here -->
+	<ViewStub android:id="@+id/vsHeader" 
+	    android:inflatedId="@+id/header" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:layout="@layout/header" />
+
+	<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:padding="6dip">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button android:id="@+id/main_btn_user"
+            style="@style/HomeButton"
+            android:onClick="onButtonClicker"
+            android:text="Profile"
+            android:drawableTop="@drawable/appbaruser"/>
+
+        <Button
+            android:id="@+id/main_btn_shutdown"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/appbarshutdown"
+            android:onClick="onButtonClicker"
+            android:text="Shutdown State" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/main_btn_sleep"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/appbarsleep"
+            android:onClick="onButtonClicker"
+            android:text="Sleep State" />
+
+        <Button
+            android:id="@+id/main_btn_wake"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/appbaron"
+            android:onClick="onButtonClicker"
+            android:text="Wake State" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/main_btn_reports"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/appbarlightninggraph"
+            android:onClick="onButtonClicker"
+            android:text="Reports" />
+
+        <Button
+            android:id="@+id/main_btn_signout"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/appbarpower"
+            android:onClick="onButtonClicker"
+            android:text="Sign out" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>

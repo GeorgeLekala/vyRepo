@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >        
+          
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1.0" >
+
+                <ImageButton
+                    android:id="@+id/ImageButton04"
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/footer_repeat"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/evoq" />
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="59dp"
+                android:background="@drawable/abs__ab_bottom_solid_dark_holo"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="84dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/ImageView03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/john" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:fadingEdge="horizontal|vertical"
+                    android:orientation="vertical" >
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/TextView07"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="John Doe"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/TextView09"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="Land Rover Evoque"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <RatingBar
+                        android:id="@+id/RatingBar03"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="80dp"
+                        android:layout_height="fill_parent"
+                        android:rating="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.5dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:textAlignment="gravity" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.40"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView08"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:paddingLeft="20dp"
+                        android:text="R500"
+                        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/ImageButton02"
+                    android:layout_width="fill_parent"
+                    android:layout_height="320dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/camg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="59dp"
+                android:background="@drawable/abs__ab_bottom_solid_dark_holo"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="84dp"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/ImageView02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/g1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:fadingEdge="horizontal|vertical"
+                    android:orientation="vertical" >
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/TextView04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="Lauryn Doe"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/TextView06"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="Merc C63 AMG"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <RatingBar
+                        android:id="@+id/RatingBar02"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="80dp"
+                        android:layout_height="fill_parent"
+                        android:rating="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.5dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:textAlignment="gravity" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.40"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView05"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:paddingLeft="20dp"
+                        android:text="R490"
+                        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/ImageButton01"
+                    android:layout_width="450dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/toyotaquantum" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="59dp"
+                android:background="@drawable/abs__ab_bottom_solid_dark_holo"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="84dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/ImageView01"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/larry_page" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:fadingEdge="horizontal|vertical"
+                    android:orientation="vertical" >
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/TextView02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="Larry Page"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/TextView03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="Toyota Quantum"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <RatingBar
+                        android:id="@+id/RatingBar01"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="80dp"
+                        android:layout_height="fill_parent"
+                        android:rating="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.5dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:textAlignment="gravity" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_weight="0.40"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-thin"
+                        android:paddingLeft="20dp"
+                        android:text="R400"
+                        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+     </LinearLayout>  
+     
+
+
+</ScrollView>

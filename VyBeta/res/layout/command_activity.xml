@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:background="#71BCFA"
+        android:padding="6dip" >
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.12"
+            android:text="Command"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="28dp"
+            android:layout_height="28dp" />
+    </LinearLayout>
+    
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="#71BCFA"
+         android:gravity="center_vertical|fill_vertical"
+         android:orientation="horizontal"
+         android:padding="6dip" >
+
+         <EditText
+             android:id="@+id/txtUsername"
+             android:layout_width="0dip"
+             android:layout_height="wrap_content"
+             android:layout_weight="0.46"
+             android:ems="10"
+             android:hint="Username" />
+
+    </LinearLayout>
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#71BCFA"
+            android:gravity="center_vertical|fill_vertical"
+            android:orientation="horizontal"
+            android:padding="6dip" >
+
+         <EditText
+             android:id="@+id/txtPassword"
+             android:layout_width="0dip"
+             android:layout_height="wrap_content"
+             android:layout_weight="0.46"
+             android:ems="10"
+             android:hint="Password" />
+    </LinearLayout>
+    
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#71BCFA"
+            android:gravity="center_vertical|fill_vertical"
+            android:orientation="horizontal"
+            android:padding="6dip" >
+
+         <EditText
+             android:id="@+id/txtCommand"
+             android:layout_width="0dip"
+             android:layout_height="wrap_content"
+             android:layout_weight="0.46"
+             android:ems="10"
+             android:hint="Command" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="#71BCFA"
+        android:gravity="center_vertical|fill_vertical"
+        android:orientation="horizontal"
+        android:padding="6dip" >
+
+         <Button
+             android:id="@+id/btn_execute"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:onClick="addItem"
+             android:text="Execute" />
+         
+          <Button
+             android:id="@+id/btn_updateitem"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:onClick="updateItem"
+             android:text="Update" />
+         
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#71BCFA"
+        android:gravity="center_vertical|fill_vertical"
+        android:orientation="horizontal"
+        android:padding="6dip" >
+
+          <Button
+             android:id="@+id/btn_updateitem"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:onClick="updateItem"
+             android:text="Update" />
+         
+
+    </LinearLayout>    
+
+    <ListView
+        android:id="@+id/listViewToDo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_list_to_do" 
+        android:padding="6dip" >
+
+    </ListView>
+
+</LinearLayout>
