@@ -39,7 +39,7 @@
                           android:layout_width="match_parent"
                  		  android:layout_height="match_parent"
                           android:layout_gravity="center"
-                          android:src="@drawable/toyotaquantum" />
+                          android:src="@drawable/quantum" />
                       
               </LinearLayout>
 
@@ -97,16 +97,6 @@
                           android:textAppearance="?android:attr/textAppearanceMedium"
                           android:textColor="@color/white"
                           android:textSize="17sp" />
-
-                      <TextView
-                          android:id="@+id/txtpaydestination"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:fontFamily="sans-serif-thin"
-                          android:text="Wits University  - Sandton"
-                          android:textAppearance="?android:attr/textAppearanceMedium"
-                          android:textColor="@color/white"
-                          android:textSize="17sp" />
                   </LinearLayout>
 
                   <LinearLayout
@@ -152,6 +142,28 @@
           <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="@drawable/abs__ab_bottom_solid_dark_holo"
+              android:layout_weight="0.54"
+              
+              android:orientation="vertical" >
+
+              <TextView
+                  android:id="@+id/txtpaydestination"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.54"
+                  android:layout_marginLeft="10dp"
+                  android:fontFamily="sans-serif-thin"
+                  android:text="Wits University - Sandton"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:textColor="@color/white"
+                  android:textSize="17sp" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
               android:layout_weight="0.54"
               android:background="@drawable/abs__ab_bottom_solid_dark_holo"
               android:orientation="horizontal" >
@@ -165,9 +177,9 @@
                       <ImageView
                           android:id="@+id/imagepayperson"
                           android:layout_width="141dp"
-                          android:layout_height="match_parent"
+                          android:layout_height="90dp"
                           android:layout_gravity="center"
-                          android:src="@drawable/larry_page" />
+                          android:src="@drawable/johndoe" />
                       
                   </LinearLayout>
                   

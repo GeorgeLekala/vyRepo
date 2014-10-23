@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+
+ <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="#fff" >
+
+      <!-- Header  Starts -->
+
+      <LinearLayout
+          android:id="@+id/linearLayout1"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:background="@layout/footer_repeat"
+          android:orientation="vertical" >
+
+      </LinearLayout>
+      <!-- Header Ends -->
+      <!-- Footer Start -->
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="10dip" >
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" >
+
+              <EditText
+                  android:id="@+id/addvehiclename"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="20dip"
+                  android:layout_marginTop="5dip"
+                  android:hint="Vehicle Name"
+                  android:inputType="text"
+                  android:singleLine="true" >
+
+                  <requestFocus />
+              </EditText>
+
+              <EditText
+                  android:id="@+id/adddrivername"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="20dip"
+                  android:layout_marginTop="5dip"
+                  android:hint="Driver Name"
+                  android:inputType="text"
+                  android:singleLine="true" />
+
+   
+              
+              <EditText
+                  android:id="@+id/addcapacity"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="20dip"
+                  android:layout_marginTop="5dip"
+                  android:hint="Capacity"
+                  android:inputType="text|number"
+                  android:singleLine="true" />
+              
+                         <EditText
+                             android:id="@+id/addcompanyname"
+                             android:layout_width="fill_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginBottom="20dip"
+                             android:layout_marginTop="5dip"
+                             android:hint="Company Name"
+                             android:inputType="text"
+                             android:singleLine="true" />
+                         
+                                     <EditText
+                                         android:id="@+id/addvehicleimg"
+                                         android:layout_width="fill_parent"
+                                         android:layout_height="wrap_content"
+                                         android:layout_marginBottom="20dip"
+                                         android:layout_marginTop="5dip"
+                                         android:hint="Vehicle Image"
+                                         android:inputType="text"
+                                         android:singleLine="true" />
+                                     
+                                                 <EditText
+                                                     android:id="@+id/adddriverimage"
+                                                     android:layout_width="fill_parent"
+                                                     android:layout_height="wrap_content"
+                                                     android:layout_marginBottom="20dip"
+                                                     android:layout_marginTop="5dip"
+                                                     android:hint="Driver Image"
+                                                     android:inputType="text"
+                                                     android:singleLine="true" />
+                                                 
+                                                 <EditText
+                                                     android:id="@+id/addrideprice"
+                                                     android:layout_width="fill_parent"
+                                                     android:layout_height="wrap_content"
+                                                     android:layout_marginBottom="20dip"
+                                                     android:layout_marginTop="5dip"
+                                                     android:hint="Ride Price"
+                                                     android:inputType="text"
+                                                     android:singleLine="true" />
+
+          </LinearLayout>
+
+          <Space
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
+          <Space
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_marginTop="15dip" />
+
+          <LinearLayout
+              android:id="@+id/linearLayout10"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="30dp"
+              android:background="@color/darkblue"
+              android:orientation="horizontal" >
+
+              <Button
+                  android:id="@+id/btnAddRide"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_above="@+id/linearLayout2"
+                  android:layout_alignParentLeft="true"
+                  android:text="Add Ride" />
+          </LinearLayout>
+      </LinearLayout>
+
+
+      <!-- Footer Ends -->
+
+
+      <!-- Registration Form -->
+
+      <!-- Registration Form Ends -->
+
+      <Space
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/btnNext"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="19dp" />
+          
+
+
+  </RelativeLayout>
+
+</ScrollView>

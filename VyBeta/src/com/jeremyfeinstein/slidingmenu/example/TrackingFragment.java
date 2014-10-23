@@ -1,123 +1,167 @@
 package com.jeremyfeinstein.slidingmenu.example;
 
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+
+import org.w3c.dom.Document;
+
 import android.content.Context;
-import android.location.Criteria;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.MobileServiceTable;
+import com.microsoft.windowsazure.mobileservices.QueryOrder;
+import com.microsoft.windowsazure.mobileservices.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.TableOperationCallback;
+import com.microsoft.windowsazure.mobileservices.TableQueryCallback;
 
 
 public class TrackingFragment extends Fragment implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, com.google.android.gms.location.LocationListener {
     
+		private MobileServiceClient mClient;
+		private MobileServiceTable<BookingItem> mCommandTable;
+		public List<BookingItem> mComItem;
+		public BookingItem mGetUserItem;
+		public SharedPreferences sharedpreferences;
+		public String session_username;
+		public BookingItem mItem;
+		public String toast;
+		Circle circle=null;
+		/////////////////////////////////////////////////////
+		
 	 	MapView mapView;
 	    GoogleMap map;
-	    Button btnShowMyLocation;
-	    LocationListener locationlisten;
 	    private LocationRequest lr;
 	    private LocationClient lc;
-	
+	    double radius;
+	    LatLng mapCenter1;
+	    double Haversineradius;
+	    Random rColour;
+	    int executeonce=0;
+	    double tempx=0;
+	    double tempy=0;
+	    boolean commandexecuted;
+	    
+		
+	   
+	    GMapV2Direction md;
+	    
+		
 
 	    @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	        View v = inflater.inflate(R.layout.show_my_location, container, false);
-
-			btnShowMyLocation = (Button) v.findViewById(R.id.button_show_my_location);
-	        // Gets the MapView from the XML layout and creates it
+	      
+	    	View v = inflater.inflate(R.layout.show_my_location, container, false);
+ 		
+	    	  if (android.os.Build.VERSION.SDK_INT > 9) {
+	              StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	              StrictMode.setThreadPolicy(policy);
+	          }
+	    	  
+	    	sharedpreferences = this.getActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE);		
+		    session_username = sharedpreferences.getAll().get("username").toString();
+		
+		    mGetUserItem = new BookingItem();
+	
+			// Create the Mobile Service Client instance, using the provided
+			// Mobile Service URL and key
+			try {
+				mClient = new MobileServiceClient(
+						"https://locationawarepm.azure-mobile.net/",
+						"FOySPsltTolaITxbZQmzvbOgHsnzSr93",
+						getActivity());	
+				
+				mCommandTable = mClient.getTable(BookingItem.class);
+				
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				Toast.makeText(getActivity(),"Error in MobileServiceClient: "+e1.getMessage(),Toast.LENGTH_LONG).show();
+	    		
+			}
+			
+	    	  
+	    	  
+			// Gets the MapView from the XML layout and creates it
 	        mapView = (MapView) v.findViewById(R.id.maplocation);
 	        mapView.onCreate(savedInstanceState);
-
+	        
 	        // Gets to GoogleMap from the MapView and does initialization stuff
 	        map = mapView.getMap();
 	        map.getUiSettings().setMyLocationButtonEnabled(true);
 	        map.getUiSettings().setAllGesturesEnabled(true);
 	        map.setMyLocationEnabled(true);
 	        map.getUiSettings().setZoomControlsEnabled(true);
-
-	        MapsInitializer.initialize(this.getActivity());	
-	       
-	        btnShowMyLocation.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					
-			        try {
-						LatLng mapCenter = new LatLng(-26.189486, 28.031666);
-			        	
-			        				        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mapCenter, 13));
-			        	
-			        				        // Flat markers will rotate when the map is rotated,
-			        				        // and change perspective when the map is tilted.
-			        				        map.addMarker(new MarkerOptions()
-			        				                .icon(BitmapDescriptorFactory.fromResource(R.drawable.carmain))
-			        				                .position(mapCenter)
-			        				                .flat(true)
-			        				                .rotation(245));
-			        	map.getMyLocation();
-			        	Toast.makeText(getActivity(),"Lat :"+map.getMyLocation().getLatitude() +" Lon : "+map.getMyLocation().getLongitude(), Toast.LENGTH_LONG).show();	
-					} catch (Exception e) {
-						Toast.makeText(getActivity(),"Lat/Lon : "+e.getMessage(), Toast.LENGTH_LONG).show();			
-						// TODO: handle exception
-					}
-			        
-			        // Updates the location and zoom of the MapView
-//			        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(-26.189486, 28.031666), 10);
-//			        map.animateCamera(cameraUpdate);
+	        
+	    	md = new GMapV2Direction();
+	 	
+			HashMap<String, Double> latlongpick =  Utility.getLocationFromAddress(Utility.getPreference("pickup_session", "pickup_key" ,getActivity()), getActivity());
+			HashMap<String, Double> latlongdrop =  Utility.getLocationFromAddress(Utility.getPreference("pickup_session", "drop_key" ,getActivity()), getActivity());
 			
-//			        
-//					LatLng mapCenter = new LatLng(-26.189486, 28.031666);
-//
-//			        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mapCenter, 13));
-//
-//			        // Flat markers will rotate when the map is rotated,
-//			        // and change perspective when the map is tilted.
-//			        map.addMarker(new MarkerOptions()
-//			                .icon(BitmapDescriptorFactory.fromResource(R.drawable.appbartruck))
-//			                .position(mapCenter)
-//			                .flat(true)
-//			                .rotation(245));
-//
-//			        CameraPosition cameraPosition = CameraPosition.builder()
-//			                .target(mapCenter)
-//			                .zoom(13)
-//			                .bearing(90)
-//			                .build();
-//			        
-//			        // Animate the change in camera view over 2 seconds
-//			        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
-//			                2000, null);
+			LatLng fromPosition = new LatLng(latlongpick.get("getLatitude"), latlongpick.get("getLongitude"));	
+			LatLng toPosition = new LatLng(latlongdrop.get("getLatitude"), latlongdrop.get("getLongitude"));	
+		
+	   		map.addMarker(new MarkerOptions()
+	   		.position(fromPosition)
+	   		.title("Rishal"));
+	   		
+	   		map.addMarker(new MarkerOptions()
+	   		.position(toPosition)
+			.title("Driver"));
+	       
+			Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
+			int duration = md.getDurationValue(doc);
+			String distance = md.getDistanceText(doc);
 
-					
-				}
-			});
 
+			Toast.makeText(getActivity(),"duration: "+duration+"-"+"distance"+distance,Toast.LENGTH_LONG).show();
+			  
+			ArrayList<LatLng> directionPoint = md.getDirection(doc);
+			PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
+			
+			for(int i = 0 ; i < directionPoint.size() ; i++) {			
+				rectLine.add(directionPoint.get(i));
+			}
+			
+			map.addPolyline(rectLine);
+	  
+	        MapsInitializer.initialize(this.getActivity());	
+   
 	        return v;
 	    }
 	  
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        lr = LocationRequest.create();
-	        lr.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+	        lr = LocationRequest.create().setInterval(10).setFastestInterval(5).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 	        lc = new LocationClient(getActivity(),this, this);
 	        lc.connect();
 	    }
@@ -127,7 +171,9 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 	        mapView.onResume();
 	        super.onResume();
 	    }
-
+	    
+	
+	    
 	    @Override
 	    public void onDestroy() {
 	        super.onDestroy();
@@ -179,19 +225,29 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 		@Override
 		public void onLocationChanged(Location location) {
 			// TODO Auto-generated method stub
-			 
-		    		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng(location.getLatitude(), location.getLongitude()), 15);
-	        		
-	        		
-			        map.addMarker(new MarkerOptions()
-	                .icon(BitmapDescriptorFactory.fromResource(R.drawable.appbaruser))
-	                .position(new LatLng(location.getLatitude(), location.getLongitude()))
-	                .flat(true)
-	                .rotation(245));
-			        
-			        map.animateCamera(cameraUpdate);
-			 			
+			
+			 double x,y;
+			 x= location.getLatitude();
+			 y= location.getLongitude();
+
+		
+		 	 if(executeonce==0)
+		 	 {  
+				   map.addMarker(new MarkerOptions()
+			       .draggable(true)
+			       .position(new LatLng(x, y))
+			       .title("This is a draggable location"));
+				   tempx = x;
+			 	   tempy = y;
+			 	   executeonce++;		 
+		 	 }
+
+		
+		
 		}
 
-
 }
+
+		        
+
+

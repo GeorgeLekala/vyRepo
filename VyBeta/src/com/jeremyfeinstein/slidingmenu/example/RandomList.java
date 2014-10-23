@@ -49,13 +49,13 @@ public class RandomList extends ListFragment{
 			newFragment = new UserFragment();
 			break;
 		case 2:
-			newFragment = new MainView();
+			newFragment = new BookTripFragment();
 			break;
 		case 3:
 			newFragment = new TrackingFragment();
 			break;
 		case 4:
-		     newFragment = new ProcessFragement();
+		     newFragment = new FareQuoteFragement();
 		 	break;
 		case 5:
 			 newFragment = new ReportFragement();

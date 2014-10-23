@@ -25,18 +25,6 @@
           android:layout_alignParentTop="true"
           android:background="@layout/footer_repeat" >
       </LinearLayout>
-
-      <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="90dip"
-          android:layout_alignParentBottom="true"
-          android:background="@layout/footer_repeat" >
-          
-           <ProgressBar
-	                android:id="@+id/loadingProgressBar"
-	                android:layout_width="match_parent"
-	                android:layout_height="28dp" />
-      </LinearLayout>
       <!-- Footer Ends -->
 
 
@@ -51,39 +39,33 @@
           android:orientation="vertical"
           android:padding="10dip" >
 
-          <TextView
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:text="Email"
-              android:textColor="#372c24" />
-
           <EditText
               android:id="@+id/loginemail"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="20dip"
               android:layout_marginTop="5dip"
+              android:fontFamily="sans-serif-thin"
+              android:hint="Email"
               android:inputType="textEmailAddress"
               android:singleLine="true" />
-
-          <TextView
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:text="Password"
-              android:textColor="#372c24" />
 
           <EditText
               android:id="@+id/loginpassword"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="5dip"
-              android:singleLine="true" android:inputType="textPassword"/>
+              android:fontFamily="sans-serif-thin"
+              android:hint="Password"
+              android:inputType="textPassword"
+              android:singleLine="true" />
 
           <Button
               android:id="@+id/btnLogin"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="10dip"
+              android:fontFamily="sans-serif-thin"
               android:text="Login" />
 
           <TextView
@@ -102,11 +84,13 @@
               android:layout_height="wrap_content"
               android:layout_marginBottom="40dip"
               android:layout_marginTop="40dip"
+              android:fontFamily="sans-serif-thin"
               android:gravity="center"
               android:text="New to Vy? Register here"
               android:textColor="#0b84aa"
-              android:textSize="20dip"
+              android:textSize="24sp"
               android:textStyle="bold" />
+
       </LinearLayout>
   </RelativeLayout>
 

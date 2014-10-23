@@ -26,9 +26,6 @@ public class BaseActivity extends SlidingFragmentActivity {
 	/**
 	 * Mobile Service Table used to access data
 	 */
-	private MobileServiceTable<CommandItem> mCommandTable;
-
-
 
 
 
@@ -42,21 +39,6 @@ public class BaseActivity extends SlidingFragmentActivity {
 
 		setTitle(mTitleRes);
 		
-		try {
-			
-			mClient = new MobileServiceClient(
-					"https://locationawarepm.azure-mobile.net/",
-					"FOySPsltTolaITxbZQmzvbOgHsnzSr93",
-					this);		
-			
-			mCommandTable = mClient.getTable(CommandItem.class);
-			
-			
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			Toast.makeText(getApplicationContext(),"Error in MobileServiceClient: "+e1.getMessage(),Toast.LENGTH_LONG).show();
-    		
-		}
 
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);

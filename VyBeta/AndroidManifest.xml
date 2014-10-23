@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="20" />
     
     <uses-permission android:name="android.permission.NFC" />
     <permission
@@ -52,7 +52,7 @@
 	    android:value="AIzaSyC0OkqTXpc5uGlhUDHGJQ90HTHZET_OoAs"/>
 	
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoginActivity" 
             android:label="VY!"
             android:configChanges="orientation|screenSize|screenLayout"
             android:theme="@style/Theme.Sherlock.Light.DarkActionBar"

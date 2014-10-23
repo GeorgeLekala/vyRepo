@@ -25,6 +25,19 @@ public class BookingItem {
 	
 	@com.google.gson.annotations.SerializedName("username")
 	private String username;
+	
+	@com.google.gson.annotations.SerializedName("hour")
+	private String hour;
+	
+	@com.google.gson.annotations.SerializedName("minute")
+	private String minute;
+
+	@com.google.gson.annotations.SerializedName("drivername")
+	private String drivername;
+	
+	@com.google.gson.annotations.SerializedName("tripPrice")
+	private String tripPrice;
+
 
 	/**
 	 * @return the mId
@@ -136,6 +149,38 @@ public class BookingItem {
 	 */
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getHour() {
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
+
+	public String getMinute() {
+		return minute;
+	}
+
+	public void setMinute(String minute) {
+		this.minute = minute;
+	}
+
+	public String getDrivername() {
+		return drivername;
+	}
+
+	public void setDrivername(String drivername) {
+		this.drivername = drivername;
+	}
+
+	public String getTripPrice() {
+		return tripPrice;
+	}
+
+	public void setTripPrice(String tripPrice) {
+		this.tripPrice = tripPrice;
 	}
 
 }

@@ -1,50 +1,38 @@
 package com.jeremyfeinstein.slidingmenu.example;
 
-import java.util.List;
-import android.app.ProgressDialog;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.MobileServiceTable;
-import com.microsoft.windowsazure.mobileservices.NextServiceFilterCallback;
-import com.microsoft.windowsazure.mobileservices.QueryOrder;
-import com.microsoft.windowsazure.mobileservices.ServiceFilter;
-import com.microsoft.windowsazure.mobileservices.ServiceFilterRequest;
-import com.microsoft.windowsazure.mobileservices.ServiceFilterResponse;
-import com.microsoft.windowsazure.mobileservices.ServiceFilterResponseCallback;
-import com.microsoft.windowsazure.mobileservices.TableOperationCallback;
-import com.microsoft.windowsazure.mobileservices.TableQueryCallback;
+import com.google.gson.Gson;
 
 
-public class BookTripFragment extends Fragment {
-	
-	private MobileServiceClient mClient;
-	private MobileServiceTable<BookingItem> mCommandTable;
-	public String userId = "";
-	public String userpass = "";
-	public String username = "";
-	public String usercommand = "";
-	public String userauth = "";
-	public String userlast = "";
-	public static final String SENDER_ID = "197130149089";
-	public List<BookingItem> mComItem;
-	public BookingItem mGetUserItem;
+public class BookTripFragment extends Fragment implements OnItemClickListener {
+
 	public SharedPreferences sharedpreferences;
+	public SharedPreferences summarypreferences;
 	public String session_username;
 	public BookingItem mItem;
-	public String toast;
-	private ProgressDialog ringProgressDialog;
-
+	public int hour,minute,year,month,day;
+	public ArrayList<String> listlocation = new ArrayList<String>();;
+	SharedPreferences  mPrefs;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -53,57 +41,95 @@ public class BookTripFragment extends Fragment {
 		    
 		    Button btnNextbook = (Button) view.findViewById(R.id.btnNextbook);
 		        
-	        final EditText reg_txtpickup = (EditText) view.findViewById(R.id.reg_txtpickup);
-	        final EditText reg_txtdropoff = (EditText) view.findViewById(R.id.reg_txtdropoff);
+		    mPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
 	        final EditText reg_txtnpassenger = (EditText) view.findViewById(R.id.reg_txtnpassenger);
-	        final EditText reg_txtDD = (EditText) view.findViewById(R.id.reg_txtDD);
-	        final EditText reg_txtdatemonth = (EditText) view.findViewById(R.id.reg_txtdatemonth);
-	        final EditText reg_txtyears = (EditText) view.findViewById(R.id.reg_txtyears);
+	        final EditText reg_txt_time = (EditText) view.findViewById(R.id.reg_txt_time);
+	        final EditText reg_txt_date = (EditText) view.findViewById(R.id.reg_txt_date);
 
-		     setHasOptionsMenu(true);
-				
-				// Create the Mobile Service Client instance, using the provided
-				// Mobile Service URL and key
-				try {
-					
-				    sharedpreferences = this.getActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE);	
-				    
-					mClient = new MobileServiceClient(
-							"https://locationawarepm.azure-mobile.net/",
-							"FOySPsltTolaITxbZQmzvbOgHsnzSr93",
-							getActivity()).withFilter(new ProgressFilter());		
-					
-					mCommandTable = mClient.getTable(BookingItem.class);
-					
-				    session_username = sharedpreferences.getAll().get("username").toString();
-					mGetUserItem = new BookingItem();
-					mItem = new BookingItem();
+	        AutoCompleteTextView autopick = (AutoCompleteTextView) view.findViewById(R.id.autopickup);
+	        AutoCompleteTextView autodrop = (AutoCompleteTextView) view.findViewById(R.id.autodrop);
+	        autopick.setAdapter(new PlacesAutoCompleteAdapter(getActivity(), R.layout.list_item));
+	        autopick.setOnItemClickListener(this);
+	        autodrop.setAdapter(new PlacesAutoCompleteAdapter(getActivity(), R.layout.list_item));
+	        autodrop.setOnItemClickListener(this);
+
+		    setHasOptionsMenu(true);
+
+		    sharedpreferences = this.getActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE);	
+		    summarypreferences = this.getActivity().getSharedPreferences("summary_session", Context.MODE_PRIVATE);	
+		    session_username = sharedpreferences.getAll().get("username").toString();
+			mItem = new BookingItem();
 				 	
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					Toast.makeText(getActivity(),"Error in BookingFragmentt: "+e1.getMessage(),Toast.LENGTH_LONG).show();
-		    		
-				}
-				
-				btnNextbook.setOnClickListener(new View.OnClickListener() {
+			reg_txt_time.setOnClickListener(new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	                try {
+	                    
+	                	DialogFragment newFragment = new TimePickerFragment(hour,minute,reg_txt_time);
+					    newFragment.show(getFragmentManager(), "timePicker");
+					    
+	                } catch (Exception except) {
+	                    
+	                }
+	            }
+	        });
+			
+			
+			reg_txt_date.setOnClickListener(new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	                try {
+	                	
+	                	   DialogFragment newFragment = new DatePickerFragment(year, month,day,reg_txt_date);
+	                	   newFragment.show(getFragmentManager(), "datePicker");
+	                    
+	                } catch (Exception except) {
+	                    
+	                }
+	            }
+	        });
+
+			btnNextbook.setOnClickListener(new View.OnClickListener() {
 		    		
 		            public void onClick(View arg0) {
 		     
 		        		try {
 		        			
-	        			mItem.setPickuplocation(reg_txtpickup.getText().toString());
-						mItem.setDroplocation(reg_txtdropoff.getText().toString());
-						mItem.setNpassengers(reg_txtnpassenger.getText().toString());
-						mItem.setDd(reg_txtDD.getText().toString());
-						mItem.setMm(reg_txtdatemonth.getText().toString());
-						mItem.setYyyy(reg_txtyears.getText().toString());
+		        	    summarypreferences.edit().putString("getTime",TimePickerFragment.hour+":"+TimePickerFragment.minute).commit();
+		        	    summarypreferences.edit().putString("getNpassengers",reg_txtnpassenger.getText().toString()).commit();
+		        	    summarypreferences.edit().putString("getDestination",listlocation.get(0).toString()+" - "+listlocation.get(1).toString()).commit();
+		        		
+		        	    Utility.setPreference("pickup_session", "pickup_key", listlocation.get(0), getActivity());
+		        	    Utility.setPreference("pickup_session", "drop_key", listlocation.get(1), getActivity());
+			        	  
+		        	    
+						mItem.setPickuplocation(listlocation.get(0));
+						mItem.setDroplocation(listlocation.get(1));
+		        	    mItem.setNpassengers(reg_txtnpassenger.getText().toString());
+						mItem.setDd(""+DatePickerFragment.day);
+		        	    mItem.setMm(""+DatePickerFragment.month);
+						mItem.setYyyy(""+DatePickerFragment.year);
+						mItem.setHour(""+TimePickerFragment.hour);
+						mItem.setMinute(""+TimePickerFragment.minute);
 						mItem.setUsername(session_username);
-
-				 
-						addNewItem(mItem);
 						
-			     
-		        		} catch (Exception e) {
+						//adding bookingitem to sharedpreference
+						Editor prefsEditor = mPrefs.edit();
+						Gson gson = new Gson();
+						String json = gson.toJson(mItem);
+						prefsEditor.putString("mItem", json);
+						prefsEditor.commit();
+
+						Fragment newFragment = new ChooseRide();
+	    		  		FragmentManager fm = getFragmentManager();
+	    		  		FragmentTransaction ft = fm.beginTransaction();	
+	    		  		ft.replace(R.id.content_frame, newFragment);
+	    		  		ft.addToBackStack(null)
+	    		  		.commit();
+	    		  		return;
+						
+					
+						} catch (Exception e) {
 		        			Toast.makeText(getActivity(),"Error in BookTripFragment: "+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
 		        		}
 		            	
@@ -115,145 +141,13 @@ public class BookTripFragment extends Fragment {
 	}
 	
 	
-	public void refreshFrag()
-	{
-	      FragmentManager manager = getActivity().getSupportFragmentManager();
-          FragmentTransaction ft = manager.beginTransaction();
-          Fragment newFragment = this;
-          this.onDestroy();
-          ft.remove(this);
-          ft.replace(R.id.content_frame,newFragment);
-          ft.addToBackStack(null);   
-          ft.commit();
-	 
-	}
 	
-	public void addNewItem(BookingItem item) {
-		
-		if (mClient == null) {
-			return;
-		}
-	
-		// Insert the new item
-		mCommandTable.insert(item, new TableOperationCallback<BookingItem>() {
-
-			public void onCompleted(BookingItem entity, Exception exception, ServiceFilterResponse response) {
-				
-				if (exception == null) {
-					
-					Toast.makeText(getActivity(),"Sucecessful", Toast.LENGTH_LONG).show();
-					Fragment newFragment = new ChooseRide();
-    		  		FragmentManager fm = getFragmentManager();
-    		  		FragmentTransaction ft = fm.beginTransaction();	
-    		  		ft.replace(R.id.content_frame, newFragment);
-    		  		ft.addToBackStack(null)
-    		  		.commit();
-    		  		return;
-    		  		
-					//refreshFrag();
-					
-				} else {
-
-					Toast.makeText(getActivity(),"Failed : " +exception.getMessage(), Toast.LENGTH_LONG).show();
-				}
-
-			}
-		});
-
-	}
-	
-	
-	public BookingItem getDBUsername(String uname) 
-	{
-		try {
-			// Get the items that weren't marked as completed and add them in the
-			// adapter		
-			mCommandTable.where().field("username").
-			eq(uname).orderBy("__createdAt", QueryOrder.Descending).
-			top(1).execute(new TableQueryCallback<BookingItem>() {
-
-				public void onCompleted(List<BookingItem> result, int count, Exception exception, ServiceFilterResponse response) {
-					if (exception == null) {
-			
-						for (BookingItem item : result) {
-						
-							mItem.setPickuplocation(item.getPickuplocation().toString());
-							mItem.setDroplocation(item.getDroplocation().toString());
-							mItem.setNpassengers(item.getNpassengers().toString());
-							mItem.setDd(item.getDd().toString());
-							mItem.setMm(item.getMm().toString());
-							mItem.setYyyy(item.getYyyy().toString());
-							mItem.setUsername(item.getUsername().toString());
-			
-						}
-						
-					} else {
-						Toast.makeText(getActivity(),exception.getMessage(), Toast.LENGTH_LONG).show();
-						
-					}
-				}
-			});
-		
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_LONG).show();
-		}
-		
-		return mItem;
-		
+	@Override
+	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+		// TODO Auto-generated method stub
+		    String pick = (String) adapterView.getItemAtPosition(position);  
+		    listlocation.add(pick);     
 	}
 
-	
-	private class ProgressFilter implements ServiceFilter {
-		
-		@Override
-	public void handleRequest(ServiceFilterRequest request, NextServiceFilterCallback nextServiceFilterCallback,final ServiceFilterResponseCallback responseCallback) {
-
-
-			getActivity().runOnUiThread(new Runnable() {
-
-				@Override
-				public void run() {
-			        try {
-			        	
-					   ringProgressDialog = ProgressDialog.show(getActivity(), "Please wait ...", "Loading ...", true);
-					    
-				       ringProgressDialog.setCancelable(false);
-				        
-						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			    
-				}
-			});
-			
-			nextServiceFilterCallback.onNext(request, new ServiceFilterResponseCallback() {
-				
-				@Override
-				public void onResponse(ServiceFilterResponse response, Exception exception) {
-					getActivity().runOnUiThread(new Runnable() {
-
-						@Override
-						public void run() {
-							try {
-								
-							    ringProgressDialog.dismiss();
-							    
-							} catch (Exception e) {
-								// TODO: handle exception
-								e.printStackTrace();
-							}
-						
-						}
-					});
-					
-					if (responseCallback != null)  responseCallback.onResponse(response, exception);
-				}
-			});
-		}
-	}
 	
 }

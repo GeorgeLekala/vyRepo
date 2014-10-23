@@ -5,5 +5,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/George/Documents/adt-bundle-windows-x86_64-20140321/sdk/add-ons/addon-google_apis-google-19-1/libs/maps.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

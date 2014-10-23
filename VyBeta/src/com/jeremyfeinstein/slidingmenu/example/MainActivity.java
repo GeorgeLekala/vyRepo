@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity{
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new MainView();
+			mContent = new BookTripFragment();
 		
 		setContentView(R.layout.content_frame);
 		getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();

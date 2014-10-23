@@ -50,6 +50,7 @@
               android:layout_height="wrap_content"
               android:layout_marginBottom="20dip"
               android:layout_marginTop="5dip"
+              android:fontFamily="sans-serif-thin"
               android:hint="Credit/Debit"
               android:inputType="text|number"
               android:singleLine="true" >
@@ -62,6 +63,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:ems="10"
+              android:fontFamily="sans-serif-thin"
               android:text="Exp date"
               android:textSize="25sp" />
 
@@ -76,9 +78,11 @@
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="20dip"
                   android:layout_marginTop="5dip"
+                  android:fontFamily="sans-serif-thin"
                   android:hint="MM"
                   android:inputType="text|number"
                   android:singleLine="true" >
+
               </EditText>
 
               <Space
@@ -91,9 +95,11 @@
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="20dip"
                   android:layout_marginTop="5dip"
+                  android:fontFamily="sans-serif-thin"
                   android:hint="YY"
                   android:inputType="textEmailAddress|number"
                   android:singleLine="true" >
+
               </EditText>
           </LinearLayout>
 
@@ -103,6 +109,7 @@
               android:layout_height="wrap_content"
               android:layout_marginBottom="20dip"
               android:layout_marginTop="5dip"
+              android:fontFamily="sans-serif-thin"
               android:hint="CVV"
               android:inputType="text|number"
               android:singleLine="true" >
@@ -117,7 +124,9 @@
               android:layout_marginBottom="80dip"
               android:layout_marginTop="10dip"
               android:layout_weight="0.20"
+              android:fontFamily="sans-serif-thin"
               android:text="Finish" />
+
       </LinearLayout>
 
         <!-- Registration Form Ends -->

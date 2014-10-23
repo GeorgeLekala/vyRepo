@@ -30,33 +30,37 @@
           android:orientation="vertical"
           android:padding="10dip" >
 
-          <LinearLayout
+         <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical" >
-
-              <EditText
-                  android:id="@+id/reg_txtpickup"
-                  android:layout_width="match_parent"
+              
+	           <AutoCompleteTextView
+				android:id="@+id/autopickup"
+				android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="20dip"
                   android:layout_marginTop="5dip"
+                  android:fontFamily="sans-serif-thin"
                   android:hint="Pickup Location"
                   android:inputType="text"
-                  android:singleLine="true" >
-
-                  <requestFocus />
-              </EditText>
-
-              <EditText
-                  android:id="@+id/reg_txtdropoff"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="20dip"
-                  android:layout_marginTop="5dip"
-                  android:hint="Drop Off Location"
-                  android:inputType="text"
-                  android:singleLine="true" />
+                  android:singleLine="true" 
+				
+				android:layout_gravity="fill_horizontal"
+				android:completionThreshold="3" />
+	           
+	           <AutoCompleteTextView
+	               android:id="@+id/autodrop"
+	               android:layout_width="match_parent"
+	               android:layout_height="wrap_content"
+	               android:layout_gravity="fill_horizontal"
+	               android:layout_marginBottom="20dip"
+	               android:layout_marginTop="5dip"
+	               android:completionThreshold="3"
+	               android:fontFamily="sans-serif-thin"
+	               android:hint="Drop off Location"
+	               android:inputType="text"
+	               android:singleLine="true" />
 
               <EditText
                   android:id="@+id/reg_txtnpassenger"
@@ -64,9 +68,11 @@
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="20dip"
                   android:layout_marginTop="5dip"
+                  android:fontFamily="sans-serif-thin"
                   android:hint="Number of Passengers"
                   android:inputType="text|number"
                   android:singleLine="true" />
+
           </LinearLayout>
 
           <Space
@@ -80,32 +86,13 @@
               android:weightSum="1.0">
 
               <EditText
-                  android:id="@+id/reg_txtDD"
-                  android:layout_width="wrap_content"
+                  android:id="@+id/reg_txt_date"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="5dip"
-                  android:layout_weight=".33"
-                  android:hint="dd"
-                  android:inputType="number"
-                  android:singleLine="true" />
-
-              <EditText
-                  android:id="@+id/reg_txtdatemonth"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dip"
-                  android:layout_weight=".33"
-                  android:hint="MM"
-                  android:inputType="number"
-                  android:singleLine="true" />
-
-              <EditText
-                  android:id="@+id/reg_txtyears"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dip"
-                  android:layout_weight=".33"
-                  android:hint="yyyy"
+                  android:layout_weight="0.5"
+                  android:fontFamily="sans-serif-thin"
+                  android:hint="Date"
                   android:inputType="number"
                   android:singleLine="true" />
 
@@ -124,24 +111,13 @@
               android:orientation="horizontal" >
 
               <EditText
-                  android:id="@+id/reg_txthh"
-                  android:layout_width="wrap_content"
+                  android:id="@+id/reg_txt_time"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="5dip"
-                  android:layout_weight=".5"
                   android:ems="10"
-                  android:hint="hh"
-                  android:inputType="number"
-                  android:singleLine="true" />
-
-              <EditText
-                  android:id="@+id/reg_txtmm"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dip"
-                  android:layout_weight=".5"
-                  android:ems="10"
-                  android:hint="mm"
+                  android:fontFamily="sans-serif-thin"
+                  android:hint="Time"
                   android:inputType="number"
                   android:singleLine="true" />
 
@@ -161,7 +137,9 @@
                   android:layout_height="wrap_content"
                   android:layout_above="@+id/linearLayout2"
                   android:layout_alignParentLeft="true"
+                  android:fontFamily="sans-serif-thin"
                   android:text="Next" />
+
           </LinearLayout>
       </LinearLayout>
 
