@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.w3c.dom.Document;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.maps.GeoPoint;
 import com.google.gson.Gson;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -32,15 +38,14 @@ import com.microsoft.windowsazure.mobileservices.TableOperationCallback;
     public static int storeImagePosition;
 	public static SharedPreferences summarypreferences;
     
-	public static void setPreference(String session, String key, String value, Context cont)
+	public static void setPreference(String key, String value, Context cont)
 	{
-		summarypreferences = cont.getSharedPreferences(session, Context.MODE_PRIVATE);
+		summarypreferences = cont.getSharedPreferences("session", Context.MODE_PRIVATE);
 		summarypreferences.edit().putString(key,value).commit();		
 	}
 	
-	public static String getPreference(String session, String key,Context cont)
+	public static String getPreference(String key)
 	{
-		summarypreferences = cont.getSharedPreferences(session, Context.MODE_PRIVATE);
 		return summarypreferences.getAll().get(key).toString();	
 	}
     
@@ -51,6 +56,32 @@ import com.microsoft.windowsazure.mobileservices.TableOperationCallback;
 		String json = appSharedPrefs.getString("mItem", "");
 		return gson.fromJson(json, BookingItem.class);
 
+    }
+    
+    public static void drawDirection(LatLng fromPosition,LatLng toPosition, GMapV2Direction md, GoogleMap map)
+    {
+    	Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
+		ArrayList<LatLng> directionPoint = md.getDirection(doc);
+		PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
+		
+		for(int i = 0 ; i < directionPoint.size() ; i++) {			
+			rectLine.add(directionPoint.get(i));
+		}
+		
+		map.addPolyline(rectLine);
+    }
+    
+    public static void drawDirection(Document doc,GMapV2Direction md, GoogleMap map)
+    {
+    	
+		ArrayList<LatLng> directionPoint = md.getDirection(doc);
+		PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
+		
+		for(int i = 0 ; i < directionPoint.size() ; i++) {			
+			rectLine.add(directionPoint.get(i));
+		}
+		
+		map.addPolyline(rectLine);
     }
     
 	public static String[] mVehicles={

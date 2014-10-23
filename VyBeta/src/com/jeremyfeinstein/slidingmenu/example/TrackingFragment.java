@@ -70,9 +70,8 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 	    double tempx=0;
 	    double tempy=0;
 	    boolean commandexecuted;
-	    
-		
-	   
+	    LatLng fromPosition;
+	    LatLng toPosition;
 	    GMapV2Direction md;
 	    
 		
@@ -123,11 +122,11 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 	        
 	    	md = new GMapV2Direction();
 	 	
-			HashMap<String, Double> latlongpick =  Utility.getLocationFromAddress(Utility.getPreference("pickup_session", "pickup_key" ,getActivity()), getActivity());
-			HashMap<String, Double> latlongdrop =  Utility.getLocationFromAddress(Utility.getPreference("pickup_session", "drop_key" ,getActivity()), getActivity());
+			HashMap<String, Double> latlongpick =  Utility.getLocationFromAddress(Utility.getPreference("pickup_key"), getActivity());
+			HashMap<String, Double> latlongdrop =  Utility.getLocationFromAddress(Utility.getPreference("drop_key"), getActivity());
 			
-			LatLng fromPosition = new LatLng(latlongpick.get("getLatitude"), latlongpick.get("getLongitude"));	
-			LatLng toPosition = new LatLng(latlongdrop.get("getLatitude"), latlongdrop.get("getLongitude"));	
+			fromPosition = new LatLng(latlongpick.get("getLatitude"), latlongpick.get("getLongitude"));	
+			toPosition = new LatLng(latlongdrop.get("getLatitude"), latlongdrop.get("getLongitude"));	
 		
 	   		map.addMarker(new MarkerOptions()
 	   		.position(fromPosition)
@@ -136,23 +135,16 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 	   		map.addMarker(new MarkerOptions()
 	   		.position(toPosition)
 			.title("Driver"));
-	       
-			Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
-			int duration = md.getDurationValue(doc);
-			String distance = md.getDistanceText(doc);
-
-
-			Toast.makeText(getActivity(),"duration: "+duration+"-"+"distance"+distance,Toast.LENGTH_LONG).show();
-			  
-			ArrayList<LatLng> directionPoint = md.getDirection(doc);
-			PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
+	   		
+	   		Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
+	   		
+	   		//get distance and duration
+	   		int duration = md.getDurationValue(doc);
+			String distance = md.getDistanceText(doc); 
 			
-			for(int i = 0 ; i < directionPoint.size() ; i++) {			
-				rectLine.add(directionPoint.get(i));
-			}
-			
-			map.addPolyline(rectLine);
-	  
+			//calling utility class to draw direction
+	   		Utility.drawDirection(doc, md, map);
+	    
 	        MapsInitializer.initialize(this.getActivity());	
    
 	        return v;
@@ -230,13 +222,17 @@ public class TrackingFragment extends Fragment implements GooglePlayServicesClie
 			 x= location.getLatitude();
 			 y= location.getLongitude();
 
-		
 		 	 if(executeonce==0)
 		 	 {  
 				   map.addMarker(new MarkerOptions()
 			       .draggable(true)
 			       .position(new LatLng(x, y))
-			       .title("This is a draggable location"));
+			       .title("Simulated Vehicle"));
+				   
+					LatLng fromUserPosition = new LatLng(x,y);	
+					Utility.drawDirection(fromUserPosition, toPosition, md, map);
+				
+					
 				   tempx = x;
 			 	   tempy = y;
 			 	   executeonce++;		 

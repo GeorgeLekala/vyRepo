@@ -78,8 +78,7 @@ public class ChooseRide extends Fragment{
 					    
 					    Utility.addItemstoPrefs(item, getActivity());
 					    
-				        
-				        Utility.setPreference("storeImagePosition", "storeposition",""+position,getActivity());
+				        Utility.setPreference("storeposition",""+position,getActivity());
   
 				        Fragment newFragment = new SummaryFrag();
 				  		FragmentManager fm = getFragmentManager();

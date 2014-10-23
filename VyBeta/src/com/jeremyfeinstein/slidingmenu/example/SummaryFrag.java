@@ -43,7 +43,7 @@ public class SummaryFrag extends Fragment {
 				txtvehiclename.setText(summarypreferences.getAll().get("getVehicleName").toString()); 
 				txtpayname.setText(summarypreferences.getAll().get("getDriverName").toString()); 
 
-				int position = Integer.parseInt(Utility.getPreference("storeImagePosition", "storeposition",getActivity()));
+				int position = Integer.parseInt(Utility.getPreference("storeposition"));
 				imageLoader.DisplayImage(Utility.mVehicles[position], imageVehicle);
 			    imageLoader.DisplayImage(Utility.mDrivers[position], imageperson);
 				

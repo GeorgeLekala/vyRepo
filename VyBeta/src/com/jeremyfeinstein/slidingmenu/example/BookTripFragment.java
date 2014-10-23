@@ -99,8 +99,8 @@ public class BookTripFragment extends Fragment implements OnItemClickListener {
 		        	    summarypreferences.edit().putString("getNpassengers",reg_txtnpassenger.getText().toString()).commit();
 		        	    summarypreferences.edit().putString("getDestination",listlocation.get(0).toString()+" - "+listlocation.get(1).toString()).commit();
 		        		
-		        	    Utility.setPreference("pickup_session", "pickup_key", listlocation.get(0), getActivity());
-		        	    Utility.setPreference("pickup_session", "drop_key", listlocation.get(1), getActivity());
+		        	    Utility.setPreference("pickup_key", listlocation.get(0), getActivity());
+		        	    Utility.setPreference("drop_key", listlocation.get(1), getActivity());
 			        	  
 		        	    
 						mItem.setPickuplocation(listlocation.get(0));
