@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:background="#FFFFFF"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+
+  <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:gravity="top" >
+
+      <LinearLayout
+          android:id="@+id/linearLayout1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="10dip" >
+
+          <ImageView
+              android:id="@+id/imageView1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/appbaruser" />
+
+          <TextView
+              android:id="@+id/textView3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="User Details"
+              android:textAppearance="?android:attr/textAppearanceLarge" />
+
+          <TextView
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.07"
+              android:text="Fist Name : George"
+              android:textColor="#372c24" />
+          <!-- Email Label -->
+          <!-- Password Label -->
+
+          <TextView
+              android:id="@+id/textView2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Last Name" />
+
+          <TextView
+              android:id="@+id/textView1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Email" />
+
+          <TextView
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Cell"
+              android:textColor="#372c24" />
+          <!-- Register Button -->
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" >
+          </LinearLayout>
+      </LinearLayout>
+
+      <Button
+          android:id="@+id/Cancel"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:layout_weight="0.45"
+          android:text="Cancel" />
+
+      <Button
+          android:id="@+id/Update"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/Cancel"
+          android:layout_alignParentLeft="true"
+          android:layout_weight="0.45"
+          android:text="Update" />
+
+  </RelativeLayout>
+
+</ScrollView>     

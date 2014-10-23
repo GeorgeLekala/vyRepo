@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+  <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:background="#fff">
+ 
+        <!--  Header  Starts-->
+           <LinearLayout
+          android:id="@+id/linearLayout1"
+          android:layout_width="fill_parent"
+          android:layout_height="40dip"
+          android:orientation="horizontal"
+          android:layout_alignParentTop="true"
+          android:background="@layout/footer_repeat" >
+      </LinearLayout>
+        <!--  Header Ends -->
+        <!-- Footer Start -->
+        <LinearLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="90dip"
+                android:background="@layout/footer_repeat"
+                android:layout_alignParentBottom="true">
+                
+	            <ProgressBar
+	                android:id="@+id/loadingProgressBar"
+	                android:layout_width="match_parent"
+	                android:layout_height="28dp" />
+
+        </LinearLayout>
+        <!-- Footer Ends -->
+ 
+        <!-- Registration Form -->
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/linearLayout1"
+          android:orientation="vertical"
+          android:padding="10dip" >
+
+          <!-- Full Name Label -->
+
+          <EditText
+              android:id="@+id/reg_txtfirstname"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dip"
+              android:layout_marginTop="5dip"
+              android:hint="Credit/Debit"
+              android:inputType="text"
+              android:singleLine="true" >
+
+              <requestFocus android:layout_width="wrap_content" />
+          </EditText>
+
+          <TextView
+              android:id="@+id/editText1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ems="10"
+              android:text="Exp date"
+              android:textSize="25sp" />
+
+          <LinearLayout
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true" >
+
+              <EditText
+                  android:id="@+id/reg_txtlastname"
+                  android:layout_width="141dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="20dip"
+                  android:layout_marginTop="5dip"
+                  android:hint="MM"
+                  android:inputType="text"
+                  android:singleLine="true" >
+              </EditText>
+
+              <Space
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent" />
+
+              <EditText
+                  android:id="@+id/reg_txtusername"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="20dip"
+                  android:layout_marginTop="5dip"
+                  android:hint="YY"
+                  android:inputType="textEmailAddress"
+                  android:singleLine="true" >
+              </EditText>
+          </LinearLayout>
+
+          <EditText
+              android:id="@+id/reg_txtfirstname"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dip"
+              android:layout_marginTop="5dip"
+              android:hint="CVV"
+              android:inputType="text"
+              android:singleLine="true" >
+
+              <requestFocus android:layout_width="wrap_content" />
+          </EditText>
+
+          <Button
+              android:id="@+id/btnfinishreg"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="80dip"
+              android:layout_marginTop="10dip"
+              android:layout_weight="0.20"
+              android:text="Finish" />
+      </LinearLayout>
+
+        <!-- Registration Form Ends -->
+  </RelativeLayout>
+</ScrollView>
